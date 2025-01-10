@@ -1,0 +1,28 @@
+pipeline {
+    
+    agent any
+    
+    stages {
+        
+        stage('clone'){
+            steps {
+                sh "rm -rf *"
+                sh "git clone https://github.com/leymardyvain/MonTest01.git"
+            }
+        }
+        
+        stage('build') {
+            steps {
+                sh "cd MonTest01/Test01/src/ && javac MonTest.java"	
+            }
+        }
+        
+        stage('run'){
+            steps {
+                sh "cd MonTest01/Test01/src/ && java MonTest"
+            }
+        }
+        
+    }
+    
+}
